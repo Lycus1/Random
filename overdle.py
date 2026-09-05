@@ -15,6 +15,7 @@ owCharacters = {
     'Winston': ('Tank', 'Male', 'Animal', 'Horizon Lunar Colony', 'Initiator'),
     'Wrecking Ball': ('Tank', 'Male', 'Animal', 'Horizon Lunar Colony', 'Initiator'),
     'Zarya': ('Tank', 'Female', 'Human', 'Europe', 'Bruiser'),
+    'D.Mon': ('Tank', 'Female', 'Human', 'Asia', 'Stalwart'),
     
     'Anran': ('DPS', 'Female', 'Human', 'Asia', 'Flanker'),
     'Emre': ('DPS', 'Male', 'Human', 'Europe', 'Specialist'),
@@ -39,6 +40,7 @@ owCharacters = {
     'Venture': ('DPS', 'Female', 'Human', 'Americas', 'Flanker'),
     'Sierra': ('DPS', 'Female', 'Human', 'Americas', 'Recon'),
     'Widowmaker': ('DPS', 'Female', 'Human', 'Europe', 'Sharpshooter'),
+    'Shion': ('DPS', 'Female', 'Omnic', 'Asia', 'Flanker'),
 
     'Jetpack Cat': ('Support', 'Female', 'Animal', 'Europe', 'Tactician'),
     'Ana': ('Support', 'Female', 'Human', 'Africa', 'Tactician'),
@@ -57,6 +59,7 @@ owCharacters = {
 }
 
 def main():
+    total_guess = 1
     print("Welcome to the Overwatch Guessing Game!")
     print("Guess the hero based on the data given.")
     print('Good luck!')
@@ -69,18 +72,20 @@ def main():
         print("That's not a valid hero. Try again.")
         guess = input('Enter your first guess: ')
 
-        while guess != randomHero:
-            for i in range(5):
-                if owCharacters[guess][i] == owCharacters[randomHero][i]:
-                    print(f'Hero is {owCharacters[guess][i]}')
-                else:
-                    print(f'Hero is not {owCharacters[guess][i]}')
+    while guess != randomHero:
+        for i in range(5):
+            if owCharacters[guess][i] == owCharacters[randomHero][i]:
+                print(f'Hero is {owCharacters[guess][i]}')
+            else:
+                print(f'Hero is not {owCharacters[guess][i]}')
+        total_guess += 1
+        guess = input('Enter your next guess: ')
+        while guess not in owCharacters:
+            print("That's not a valid hero. Try again.")
             guess = input('Enter your next guess: ')
-            while guess not in owCharacters:
-                print("That's not a valid hero. Try again.")
-                guess = input('Enter your next guess: ')
 
-        print('You guessed correctly! The hero was', randomHero)
+    print('You guessed correctly! The hero was', randomHero)
+    print('total guesses:', total_guess)
 
 if __name__ == "__main__":
     main()
